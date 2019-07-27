@@ -1,0 +1,11 @@
+.Logo {
+  background-color: white;
+  padding: 4px;
+  height: 60%;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.Logo img {
+  height: 100%;
+}
