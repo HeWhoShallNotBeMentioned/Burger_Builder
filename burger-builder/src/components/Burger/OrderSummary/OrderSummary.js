@@ -24,6 +24,7 @@ class OrderSummary extends Component {
         </li>
       );
     });
+
     return (
       <Aux>
         <h3>Order Summary</h3>
