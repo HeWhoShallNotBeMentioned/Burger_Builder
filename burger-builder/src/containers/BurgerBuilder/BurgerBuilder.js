@@ -30,6 +30,7 @@ class BurgerBuilder extends Component {
 
   async componentDidMount() {
     try {
+      console.log('burger-builder componentDidMount this.props', this.props);
       const { data } = await axios.get('/ingredients.json');
       this.setState({ ingredients: { ...data } });
     } catch (error) {
@@ -92,29 +93,31 @@ class BurgerBuilder extends Component {
 
   purchaseContinueHandler = async () => {
     //alert('Continue making your burger!');
-    this.setState({ loading: true });
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: 'Chris Underwood',
-        address: {
-          street: 'Teststreet 1',
-          zipCode: '97107',
-          country: 'USA',
-        },
-        email: 'test@test.com',
-      },
-      deliveryMethod: 'fasest',
-    };
-    try {
-      const orderResponse = await axios.post('/orders.json', order);
-      console.log('orderResponse', orderResponse);
-      this.setState({ loading: false, purchasing: false });
-    } catch (error) {
-      this.setState({ loading: false, purchasing: false });
-      console.log('error', error);
-    }
+    // this.setState({ loading: true });
+    // const order = {
+    //   ingredients: this.state.ingredients,
+    //   price: this.state.totalPrice,
+    //   customer: {
+    //     name: 'Chris Underwood',
+    //     address: {
+    //       street: 'Teststreet 1',
+    //       zipCode: '97107',
+    //       country: 'USA',
+    //     },
+    //     email: 'test@test.com',
+    //   },
+    //   deliveryMethod: 'fastest',
+    // };
+    // try {
+    //   const orderResponse = await axios.post('/orders.json', order);
+    //   console.log('orderResponse', orderResponse);
+    //   this.setState({ loading: false, purchasing: false });
+    // } catch (error) {
+    //   this.setState({ loading: false, purchasing: false });
+    //   console.log('error', error);
+    // }
+
+    this.props.history.push('/checkout');
   };
 
   render() {
