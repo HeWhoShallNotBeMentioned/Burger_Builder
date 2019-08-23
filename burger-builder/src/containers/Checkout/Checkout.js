@@ -5,22 +5,23 @@ import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSumm
 import ContactData from './ContactData/ContactData';
 class Checkout extends Component {
   state = {
-    ingredients: {
-      salad: 0,
-      meat: 0,
-      cheese: 0,
-      bacon: 0,
-    },
+    ingredients: null,
+    price: 0,
   };
 
   componentDidMount() {
     const query = new URLSearchParams(this.props.location.search);
     const ingredient = {};
+    let price = 0;
 
     for (let param of query.entries()) {
-      ingredient[param[0]] = +param[1];
+      if (param[0] === 'price') {
+        price = param[1];
+      } else {
+        ingredient[param[0]] = +param[1];
+      }
     }
-    this.setState({ ingredients: ingredient });
+    this.setState({ ingredients: ingredient, totalPrice: price });
   }
 
   checkoutCancelledHandler = () => {
@@ -42,7 +43,13 @@ class Checkout extends Component {
 
         <Route
           path={this.props.match.url + '/contact-data'}
-          component={ContactData}
+          render={props => (
+            <ContactData
+              ingredients={this.state.ingredients}
+              price={this.state.totalPrice}
+              {...props}
+            />
+          )}
         />
       </div>
     );
