@@ -1,13 +1,38 @@
 import React from 'react';
 
+import BurgerIngredient from '../Burger/BurgerIngredient/BurgerIngredient';
 import classes from './Order.css';
 
 const order = props => {
+  console.log('order props++++++', props);
+  const ingredients = [];
+  for (let ingredientName in props.ingredients) {
+    ingredients.push({
+      name: ingredientName,
+      amount: props.ingredients[ingredientName],
+    });
+  }
+  const ingredientOutput = ingredients.map(ing => {
+    return (
+      <span
+        key={ing.name}
+        style={{
+          textTransform: 'capitalize',
+          display: 'inline-block',
+          margin: '0 8px',
+          border: '1px solid #ccc',
+          padding: '0 6px',
+        }}
+      >
+        {ing.name} ({ing.amount})
+      </span>
+    );
+  });
   return (
     <div className={classes.Order}>
-      <p>Ingredients: Salad(1)</p>
+      <div>Ingredients: {ingredientOutput} </div>
       <p>
-        Price: <strong>USD 5.45</strong>
+        Price: <strong>USD {Number(props.price).toFixed(2)}</strong>
       </p>
     </div>
   );
