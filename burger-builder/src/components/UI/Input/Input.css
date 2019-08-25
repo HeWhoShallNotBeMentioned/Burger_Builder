@@ -25,3 +25,12 @@
   outline: none;
   background-color: #ccc;
 }
+
+.Invalid {
+
+  border: 2px solid salmon;
+}
+.Invalid:focus {
+  border: 2px solid salmon;
+  background-color: red;
+}
