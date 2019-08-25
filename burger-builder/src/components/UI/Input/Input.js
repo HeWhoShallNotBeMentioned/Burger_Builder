@@ -3,11 +3,17 @@ import React from 'react';
 import classes from './Input.css';
 
 const input = props => {
+  console.log(props.config);
   let inputElement = null;
   const InputClasses = [classes.InputElement];
-
+  let validationError = null;
   if (props.invalid && props.shouldValidate && props.touched) {
     InputClasses.push(classes.Invalid);
+    validationError = (
+      <p className={classes.ValidationError}>
+        Please enter a valid {props.valueType}!
+      </p>
+    );
   }
 
   switch (props.elementType) {
@@ -62,6 +68,7 @@ const input = props => {
     <div className={classes.Input}>
       <label className={classes.Label}>{props.label}</label>
       {inputElement}
+      {validationError}
     </div>
   );
 };
