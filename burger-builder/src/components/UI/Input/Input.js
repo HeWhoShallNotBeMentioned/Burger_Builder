@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './Input.css';
 
 const input = props => {
-  console.log('input props     ', props);
+  // console.log('input props     ', props);
   let inputElement = null;
   switch (props.elementType) {
     case 'input':
@@ -12,6 +12,7 @@ const input = props => {
           className={classes.InputElement}
           {...props.elementConfig}
           value={props.value}
+          onChange={props.changed}
         />
       );
       break;
@@ -21,12 +22,17 @@ const input = props => {
           className={classes.InputElement}
           {...props.elementConfig}
           value={props.value}
+          onChange={props.changed}
         />
       );
       break;
     case 'select':
       inputElement = (
-        <select className={classes.InputElement} value={props.value}>
+        <select
+          className={classes.InputElement}
+          value={props.value}
+          onChange={props.changed}
+        >
           {props.elementConfig.options.map(opt => {
             return (
               <option key={opt.value} value={opt.value}>
@@ -43,6 +49,7 @@ const input = props => {
           className={classes.InputElement}
           {...props.elementConfig}
           value={props.value}
+          onChange={props.changed}
         />
       );
   }
