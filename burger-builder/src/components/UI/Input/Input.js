@@ -3,6 +3,7 @@ import React from 'react';
 import classes from './Input.css';
 
 const input = props => {
+  console.log('input props     ', props);
   let inputElement = null;
   switch (props.elementType) {
     case 'input':
@@ -25,11 +26,15 @@ const input = props => {
       break;
     case 'select':
       inputElement = (
-        <select
-          className={classes.InputElement}
-          {...props.elementConfig}
-          value={props.value}
-        />
+        <select className={classes.InputElement} value={props.value}>
+          {props.elementConfig.options.map(opt => {
+            return (
+              <option key={opt.value} value={opt.value}>
+                {opt.displayValue}
+              </option>
+            );
+          })}
+        </select>
       );
       break;
     default:
