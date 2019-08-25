@@ -3,7 +3,6 @@ import React from 'react';
 import classes from './Input.css';
 
 const input = props => {
-  // console.log('input props     ', props);
   let inputElement = null;
   switch (props.elementType) {
     case 'input':
