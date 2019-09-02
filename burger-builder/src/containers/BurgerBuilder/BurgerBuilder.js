@@ -15,7 +15,6 @@ class BurgerBuilder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      purchasable: false,
       purchasing: false,
       loading: false,
       error: false,
@@ -38,7 +37,7 @@ class BurgerBuilder extends Component {
       return total + num;
     }, 0);
 
-    this.setState({ purchasable: sum > 0 });
+    return sum > 0;
   };
 
   // addIngredientHandler = type => {
@@ -129,7 +128,7 @@ class BurgerBuilder extends Component {
             ingredientAdded={this.props.onIngredientAdded}
             ingredientRemoved={this.props.onIngredientRemoved}
             disabled={disabledInfo}
-            purchasable={this.state.purchasable}
+            purchasable={this.updatePurcahaseState(this.props.ingreds)}
             price={this.props.pri}
             ordered={this.purchaseHandler}
           />
