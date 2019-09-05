@@ -9,7 +9,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import axios from '../../axios-orders';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import { ADD_INGREDIENT, REMOVE_INGREDIENT } from '../../Store/actions';
+import { addIngredient, removeIngredient } from '../../Store/actions/index';
 
 class BurgerBuilder extends Component {
   constructor(props) {
@@ -30,6 +30,7 @@ class BurgerBuilder extends Component {
     //   console.log(error);
     //   this.setState({ error: true });
     // }
+    console.log('BurgerBuilder state....', this.state);
   }
 
   updatePurcahaseState = ingredients => {
@@ -173,10 +174,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onIngredientAdded: ingName => {
-      dispatch({ type: ADD_INGREDIENT, ingredientName: ingName });
+      dispatch(addIngredient(ingName));
     },
     onIngredientRemoved: ingName => {
-      dispatch({ type: REMOVE_INGREDIENT, ingredientName: ingName });
+      dispatch(removeIngredient(ingName));
     },
   };
 };

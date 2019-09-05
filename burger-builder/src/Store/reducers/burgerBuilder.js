@@ -1,4 +1,4 @@
-import { ADD_INGREDIENT, REMOVE_INGREDIENT } from './actions';
+import { ADD_INGREDIENT, REMOVE_INGREDIENT } from '../actions/actionTypes';
 
 const initialState = {
   ingredients: { salad: 0, bacon: 0, cheese: 0, meat: 0 },
