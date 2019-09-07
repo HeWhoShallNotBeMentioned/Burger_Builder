@@ -7,7 +7,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import classes from './ContactData.css';
 import Input from '../../../components/UI/Input/Input';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
-import { purchaseBurgerStart } from '../../../Store/actions/index';
+import { purchaseBurger } from '../../../Store/actions/index';
 class ContactData extends Component {
   state = {
     orderForm: {
@@ -93,7 +93,6 @@ class ContactData extends Component {
       },
     },
     formIsValid: false,
-    loading: false,
   };
 
   checkValidity = (value, rules) => {
@@ -130,7 +129,7 @@ class ContactData extends Component {
       price: this.props.pri,
       orderData: formData,
     };
-    this.props.onPurchaseBurgerStart(order);
+    this.props.onPurchaseBurger(order);
   };
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -179,7 +178,7 @@ class ContactData extends Component {
         </Button>
       </form>
     );
-    if (this.state.loading) {
+    if (this.props.loading) {
       form = <Spinner />;
     }
     return (
@@ -195,13 +194,13 @@ const mapStateToProps = state => {
   return {
     ingreds: state.ingredients,
     pri: state.totalPrice,
+    loading: state.loading,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onPurchaseBurgerStart: orderData =>
-      dispatch(purchaseBurgerStart(orderData)),
+    onPurchaseBurger: orderData => dispatch(purchaseBurger(orderData)),
   };
 };
 
