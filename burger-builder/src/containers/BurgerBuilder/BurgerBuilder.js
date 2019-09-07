@@ -16,8 +16,6 @@ class BurgerBuilder extends Component {
     super(props);
     this.state = {
       purchasing: false,
-      loading: false,
-      error: false,
     };
   }
 
@@ -147,10 +145,6 @@ class BurgerBuilder extends Component {
           total={this.props.pri}
         />
       );
-    }
-
-    if (this.state.loading) {
-      orderSummary = <Spinner />;
     }
 
     return (
