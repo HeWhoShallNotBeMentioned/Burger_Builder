@@ -9,7 +9,11 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import axios from '../../axios-orders';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import { addIngredient, removeIngredient } from '../../Store/actions/index';
+import {
+  addIngredient,
+  removeIngredient,
+  initIngredients,
+} from '../../Store/actions/index';
 
 class BurgerBuilder extends Component {
   constructor(props) {
@@ -28,6 +32,7 @@ class BurgerBuilder extends Component {
     //   console.log(error);
     //   this.setState({ error: true });
     // }
+    this.props.onInitIngredients();
     console.log('BurgerBuilder state....', this.state);
   }
 
@@ -117,7 +122,7 @@ class BurgerBuilder extends Component {
     }
     let orderSummary = null;
 
-    let burger = this.state.error ? (
+    let burger = this.props.error ? (
       <p style={{ textAlign: 'center' }}>Ingredients cannot be loaded. </p>
     ) : (
       <Spinner />
@@ -162,7 +167,11 @@ class BurgerBuilder extends Component {
 }
 
 const mapStateToProps = state => {
-  return { ingreds: state.ingredients, pri: state.totalPrice };
+  return {
+    ingreds: state.ingredients,
+    pri: state.totalPrice,
+    error: state.error,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -172,6 +181,9 @@ const mapDispatchToProps = dispatch => {
     },
     onIngredientRemoved: ingName => {
       dispatch(removeIngredient(ingName));
+    },
+    onInitIngredients: () => {
+      dispatch(initIngredients());
     },
   };
 };
