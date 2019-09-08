@@ -13,6 +13,7 @@ import {
   addIngredient,
   removeIngredient,
   initIngredients,
+  purchaseInit,
 } from '../../Store/actions/index';
 
 class BurgerBuilder extends Component {
@@ -107,6 +108,7 @@ class BurgerBuilder extends Component {
     //     pathname: '/checkout',
     //     search: '?' + queryString,
     //   });
+    this.props.onPurchaseInit();
     this.props.history.push({
       pathname: '/checkout',
     });
@@ -190,6 +192,9 @@ const mapDispatchToProps = dispatch => {
     },
     onInitIngredients: () => {
       dispatch(initIngredients());
+    },
+    onPurchaseInit: () => {
+      dispatch(purchaseInit());
     },
   };
 };

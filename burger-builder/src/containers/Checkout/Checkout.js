@@ -5,17 +5,12 @@ import { connect } from 'react-redux';
 import Aux from '../../hoc/Aux/Aux';
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from './ContactData/ContactData';
-class Checkout extends Component {
-  // state = {
-  //   ingredients: null,
-  //   price: 0,
-  // };
 
-  // componentDidMount() {
+class Checkout extends Component {
+  //componentDidMount() {
   //   const query = new URLSearchParams(this.props.location.search);
   //   const ingredient = {};
   //   let price = 0;
-
   //   for (let param of query.entries()) {
   //     if (param[0] === 'price') {
   //       price = Number(param[1]).toFixed(2);
@@ -24,7 +19,7 @@ class Checkout extends Component {
   //     }
   //   }
   //   this.setState({ ingredients: ingredient, totalPrice: price });
-  // }
+  //}
 
   checkoutCancelledHandler = () => {
     this.props.history.goBack();
@@ -37,8 +32,12 @@ class Checkout extends Component {
   render() {
     let summary = <Redirect to="/" />;
     if (this.props.ingreds) {
+      const purchaseRedirect = this.props.purchased ? (
+        <Redirect to="/" />
+      ) : null;
       summary = (
         <Aux>
+          {purchaseRedirect}
           <CheckoutSummary
             ingredients={this.props.ingreds}
             checkoutCancelled={this.checkoutCancelledHandler}
@@ -58,6 +57,7 @@ class Checkout extends Component {
 const mapStateToProps = state => {
   return {
     ingreds: state.brg.ingredients,
+    purchased: state.ord.purchased,
   };
 };
 

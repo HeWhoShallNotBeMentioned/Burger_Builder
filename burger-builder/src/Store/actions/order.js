@@ -2,6 +2,7 @@ import {
   PURCHASE_BURGER_SUCCESS,
   PURCHASE_BURGER_FAIL,
   PURCHASE_BURGER_START,
+  PURCHASE_INIT,
 } from './actionTypes';
 
 import axios from '../../axios-orders';
@@ -38,5 +39,11 @@ export const purchaseBurger = orderData => {
       dispatch(purchaseBurgerFail(error));
       console.log('error', error);
     }
+  };
+};
+
+export const purchaseInit = () => {
+  return {
+    type: PURCHASE_INIT,
   };
 };
