@@ -150,6 +150,12 @@ class BurgerBuilder extends Component {
           total={this.props.pri}
         />
       );
+    } else {
+      burger = (
+        <Aux>
+          <Spinner />
+        </Aux>
+      );
     }
 
     return (
