@@ -5,6 +5,8 @@ import {
   FETCH_INGREDIENTS_FAILED,
 } from '../actions/actionTypes';
 
+import { updatedObject } from '../utility';
+
 const initialState = {
   ingredients: null,
   totalPrice: 4,
@@ -39,8 +41,7 @@ const reducer = (state = initialState, action) => {
         totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
       };
     case SET_INGREDIENTS:
-      return {
-        ...state,
+      return updatedObject(state, {
         ingredients: {
           salad: action.ingredients.salad,
           bacon: action.ingredients.bacon,
@@ -49,12 +50,9 @@ const reducer = (state = initialState, action) => {
         },
         totalPrice: 4,
         error: false,
-      };
+      });
     case FETCH_INGREDIENTS_FAILED:
-      return {
-        ...state,
-        error: true,
-      };
+      return updatedObject(state, { error: true });
     default:
       return state;
   }
