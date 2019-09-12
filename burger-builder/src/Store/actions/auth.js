@@ -22,7 +22,7 @@ export const authFail = error => {
   };
 };
 
-export const fetchAuth = (email, password) => {
+export const fetchAuth = (email, password, isSignUp) => {
   return async dispatch => {
     dispatch(authStart());
     const authData = {
@@ -30,9 +30,15 @@ export const fetchAuth = (email, password) => {
       password: password,
       returnSecureToken: true,
     };
+    let url =
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBzONL_c7wZAIqQIEk3dBqwzGaUl0VT8pg';
+    if (!isSignUp) {
+      url =
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBzONL_c7wZAIqQIEk3dBqwzGaUl0VT8pg';
+    }
     try {
       const { data } = await axios.post(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBzONL_c7wZAIqQIEk3dBqwzGaUl0VT8pg',
+        url,
         //process.env.FIREBASE_API_KEY,
         authData
       );
