@@ -31,10 +31,12 @@ export const fetchAuth = (email, password, isSignUp) => {
       returnSecureToken: true,
     };
     let url =
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBzONL_c7wZAIqQIEk3dBqwzGaUl0VT8pg';
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
+      process.env.FIREBASE_API_KEY;
     if (!isSignUp) {
       url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBzONL_c7wZAIqQIEk3dBqwzGaUl0VT8pg';
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
+        process.env.FIREBASE_API_KEY;
     }
     try {
       const { data } = await axios.post(

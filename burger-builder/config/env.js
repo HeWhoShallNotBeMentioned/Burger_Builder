@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
@@ -76,6 +74,7 @@ function getClientEnvironment(publicUrl) {
         // For example, <img src={process.env.PUBLIC_URL + '/img/logo.png'} />.
         // This should only be used as an escape hatch. Normally you would put
         // images into the `src` and `import` them in code to get their paths.
+        FIREBASE_API_KEY: 'AIzaSyBzONL_c7wZAIqQIEk3dBqwzGaUl0VT8pg',
         PUBLIC_URL: publicUrl,
       }
     );
