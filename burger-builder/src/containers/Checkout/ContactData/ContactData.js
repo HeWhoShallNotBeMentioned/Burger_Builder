@@ -126,7 +126,7 @@ class ContactData extends Component {
     return isValid;
   };
 
-  orderHandler = async event => {
+  orderHandler = event => {
     event.preventDefault();
     const formData = {};
     for (let formElementIdentifier in this.state.orderForm) {
