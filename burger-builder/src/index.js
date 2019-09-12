@@ -9,11 +9,13 @@ import './index.css';
 import App from './App';
 import burgerReducer from './Store/reducers/burgerBuilder';
 import orderReducer from './Store/reducers/order';
+import authReducer from './Store/reducers/auth';
 import registerServiceWorker from './registerServiceWorker';
 
 const rootReducer = combineReducers({
   brg: burgerReducer,
   ord: orderReducer,
+  aut: authReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

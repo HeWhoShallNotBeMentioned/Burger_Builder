@@ -8,10 +8,11 @@ export const authStart = () => {
   return { type: AUTH_START };
 };
 
-export const authSuccess = authData => {
+export const authSuccess = (token, userId) => {
   return {
     type: AUTH_SUCCESS,
-    authData: authData,
+    idToken: token,
+    userId: userId,
   };
 };
 
@@ -39,13 +40,9 @@ export const fetchAuth = (email, password, isSignUp) => {
         process.env.FIREBASE_API_KEY;
     }
     try {
-      const { data } = await axios.post(
-        url,
-        //process.env.FIREBASE_API_KEY,
-        authData
-      );
+      const { data } = await axios.post(url, authData);
       console.log('auth data from firebase   ', data);
-      dispatch(authSuccess(data));
+      dispatch(authSuccess(data.idToken, data.localId));
     } catch (error) {
       dispatch(authFail(error));
     }
