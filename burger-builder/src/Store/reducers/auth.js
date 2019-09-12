@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
         token: action.idToken,
       });
     case AUTH_FAIL:
-      return updatedObject(state, { error: true, loading: false });
+      return updatedObject(state, { error: action.error, loading: false });
     default:
       return state;
   }

@@ -44,7 +44,8 @@ export const fetchAuth = (email, password, isSignUp) => {
       console.log('auth data from firebase   ', data);
       dispatch(authSuccess(data.idToken, data.localId));
     } catch (error) {
-      dispatch(authFail(error));
+      console.log('error auth fail', error.response.data.error);
+      dispatch(authFail(error.response.data.error));
     }
   };
 };
