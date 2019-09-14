@@ -5,6 +5,7 @@ import {
   AUTH_SUCCESS,
   AUTH_FAIL,
   AUTH_LOGOUT,
+  SET_AUTH_REDIRECT_PATH,
 } from './actionTypes';
 
 require('dotenv').config();
@@ -66,5 +67,12 @@ export const fetchAuth = (email, password, isSignUp) => {
       console.log('error auth fail', error.response.data.error);
       dispatch(authFail(error.response.data.error));
     }
+  };
+};
+
+export const setAuthRedirectPath = path => {
+  return {
+    type: SET_AUTH_REDIRECT_PATH,
+    path: path,
   };
 };
