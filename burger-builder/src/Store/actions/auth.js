@@ -93,13 +93,15 @@ export const authCheckState = () => {
       dispatch(logout());
     } else {
       const timeExpires = new Date(localStorage.getItem('tokenExpires'));
-      if (timeExpires > new Date()) {
+      if (timeExpires <= new Date()) {
         dispatch(logout());
       } else {
         const userId = localStorage.getItem('userId');
         dispatch(authSuccess(token, userId));
         dispatch(
-          checkAuthTimeout(timeExpires.getSeconds() - new Date().getSeconds())
+          checkAuthTimeout(
+            (timeExpires.getTime() - new Date().getTime()) / 1000
+          )
         );
       }
     }
