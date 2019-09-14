@@ -30,6 +30,9 @@ export const authFail = error => {
 };
 
 export const logout = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('tokenExpires');
+  localStorage.removeItem('userId');
   return { type: AUTH_LOGOUT };
 };
 
@@ -61,6 +64,12 @@ export const fetchAuth = (email, password, isSignUp) => {
     try {
       const { data } = await axios.post(url, authData);
       console.log('auth data from firebase   ', data);
+      const tokenExpires = new Date(
+        new Date().getTime() + data.expiresIn * 1000
+      );
+      localStorage.setItem('token', data.idToken);
+      localStorage.setItem('tokenExpires', tokenExpires);
+      localStorage.setItem('userId', data.localId);
       dispatch(authSuccess(data.idToken, data.localId));
       dispatch(checkAuthTimeout(data.expiresIn));
     } catch (error) {
@@ -74,5 +83,25 @@ export const setAuthRedirectPath = path => {
   return {
     type: SET_AUTH_REDIRECT_PATH,
     path: path,
+  };
+};
+
+export const authCheckState = () => {
+  return dispatch => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      dispatch(logout());
+    } else {
+      const timeExpires = new Date(localStorage.getItem('tokenExpires'));
+      if (timeExpires > new Date()) {
+        dispatch(logout());
+      } else {
+        const userId = localStorage.getItem('userId');
+        dispatch(authSuccess(token, userId));
+        dispatch(
+          checkAuthTimeout(timeExpires.getSeconds() - new Date().getSeconds())
+        );
+      }
+    }
   };
 };
