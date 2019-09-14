@@ -9,6 +9,7 @@ import Orders from './containers/Orders/Orders';
 import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout/Logout';
 import { authCheckState } from './Store/actions/index';
+import Aux from './hoc/Aux/Aux';
 class App extends Component {
   componentDidMount() {
     this.props.onTryAutoSignUp();
@@ -18,17 +19,28 @@ class App extends Component {
       <div>
         <Layout>
           <Switch>
-            <Route path="/orders" component={Orders} />
-            <Route path="/checkout" component={Checkout} />
             <Route path="/auth" component={Auth} />
             <Route path="/logout" component={Logout} />
             <Route path="/" exact component={BurgerBuilder} />
+            {this.props.isAuth ? (
+              <Aux>
+                <Route exact path="/orders" component={Orders} />
+                <Route path="/checkout" component={Checkout} />
+              </Aux>
+            ) : (
+              <Route component={Auth} />
+            )}
           </Switch>
         </Layout>
       </div>
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    isAuth: state.aut.token !== null,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return { onTryAutoSignUp: () => dispatch(authCheckState()) };
@@ -36,7 +48,7 @@ const mapDispatchToProps = dispatch => {
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(App)
 );
