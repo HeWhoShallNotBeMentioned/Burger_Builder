@@ -19,9 +19,9 @@ class App extends Component {
       <div>
         <Layout>
           <Switch>
-            <Route path="/auth" component={Auth} />
-            <Route path="/logout" component={Logout} />
             <Route path="/" exact component={BurgerBuilder} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/auth" component={Auth} />
             {this.props.isAuth ? (
               <Aux>
                 <Route exact path="/orders" component={Orders} />
