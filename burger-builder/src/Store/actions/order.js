@@ -39,11 +39,10 @@ export const purchaseBurger = (orderData, token) => {
         '/orders.json?auth=' + token,
         orderData
       );
-      console.log('orderResponse', orderResponse);
+
       dispatch(purchaseBurgerSuccess(orderResponse.data.name, orderData));
     } catch (error) {
       dispatch(purchaseBurgerFail(error));
-      console.log('error', error);
     }
   };
 };
@@ -79,12 +78,12 @@ export const fetchOrders = (token, userId) => {
       const queryParams =
         '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
       const { data } = await axios.get('/orders.json' + queryParams);
-      console.log('orders.data-----', data);
+
       const fetchedOrders = [];
       for (let key in data) {
         fetchedOrders.push({ ...data[key], id: key });
       }
-      console.log('fetchedOrders-----', fetchedOrders);
+
       dispatch(fetchOrdersSuccess(fetchedOrders));
     } catch (error) {
       dispatch(fetchOrdersFail(error));

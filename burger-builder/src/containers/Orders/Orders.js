@@ -13,7 +13,6 @@ class Orders extends Component {
   }
 
   render() {
-    console.log('this.props.orders------', this.props.orders);
     let ordersList = <Spinner />;
     if (!this.props.loading) {
       ordersList = this.props.orders.map(ord => {

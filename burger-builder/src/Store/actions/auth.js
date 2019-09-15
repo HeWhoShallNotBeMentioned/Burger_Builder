@@ -37,7 +37,6 @@ export const logout = () => {
 };
 
 export const checkAuthTimeout = expTime => {
-  console.log('expTime inside checkAuthTimeout========    ', expTime);
   return dispatch => {
     setTimeout(() => {
       dispatch(logout());
@@ -63,7 +62,7 @@ export const fetchAuth = (email, password, isSignUp) => {
     }
     try {
       const { data } = await axios.post(url, authData);
-      console.log('auth data from firebase   ', data);
+
       const tokenExpires = new Date(
         new Date().getTime() + data.expiresIn * 1000
       );
@@ -73,7 +72,6 @@ export const fetchAuth = (email, password, isSignUp) => {
       dispatch(authSuccess(data.idToken, data.localId));
       dispatch(checkAuthTimeout(data.expiresIn));
     } catch (error) {
-      console.log('error auth fail', error.response.data.error);
       dispatch(authFail(error.response.data.error));
     }
   };

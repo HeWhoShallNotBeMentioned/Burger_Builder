@@ -3,7 +3,6 @@ import React from 'react';
 import classes from './Input.css';
 
 const input = props => {
-  console.log(props.config);
   let inputElement = null;
   const InputClasses = [classes.InputElement];
   let validationError = null;

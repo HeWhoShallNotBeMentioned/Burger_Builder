@@ -12,7 +12,7 @@ class OrderSummary extends Component {
   }
 
   componentDidUpdate() {
-    console.log('[OrderSummary] DidUpdate');
+    //console.log('[OrderSummary] DidUpdate');
   }
 
   render() {

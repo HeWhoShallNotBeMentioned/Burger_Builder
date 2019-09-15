@@ -26,16 +26,7 @@ class BurgerBuilder extends Component {
   }
 
   async componentDidMount() {
-    // try {
-    //   console.log('burger-builder componentDidMount this.props', this.props);
-    //   const { data } = await axios.get('/ingredients.json');
-    //   this.setState({ ingredients: { ...data } });
-    // } catch (error) {
-    //   console.log(error);
-    //   this.setState({ error: true });
-    // }
     this.props.onInitIngredients();
-    console.log('BurgerBuilder state....', this.state);
   }
 
   updatePurcahaseState = ingredients => {
