@@ -1,37 +1,37 @@
 # _{Burger Builder}_
 
-#### _{Brief description of application}, {Date of current version}_
+#### _{A course projecto to get familiar with React. }, {Date of current version}_
 
-#### By _**{List of contributors}**_
+#### By _**{Chris Underwood}**_
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage. Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+_{This is a project that I did to further my understanding of React and related technologies. The project was basically done twice. The first time passing props to components by various means. The other way using Redux state management. For a thorough description of the technologies used, look in the technologies used section below on this page. }_
 
 ## Setup/Installation Requirements
 
-- _This is a great place_
-- _to list setup instructions_
-- _in a simple_
-- _easy-to-understand_
-- _format_
+- Copy the repo from Gitub
+  _ Go to into the project folder where you wanted it saved
+  _ run npm install
+  _ when this is done, run npm start
+  _ open your internet broswer to localhost:3000
 
 _{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
 
 ## Known Bugs
 
-_{Are there issues that have not yet been resolved that you want to let users know you know? Outline any issues that would impact use of your application. Share any workarounds that are in place. }_
+_{None that I am aware of.}_
 
 ## Support and contact details
 
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns. Encourage them to contact you or make a contribution to the code.}_
+_{cunderwoodmn [at] gmail {dot} com}_
 
 ## Technologies Used
 
-_{Tell me about the languages and tools you used to create this app. Assume that I know you probably used HTML and CSS. If you did something really cool using only HTML, point that out.}_
+_{React, Create React App, JSX, vanilla JS, Redux, React Router, Firebase, Jest, Enzyme, CSS Modules, Lazy Loading, Form Validation, Authentication, Environmental Variables}_
 
 ### License
 
-_{Determine the license under which this application can be used. See below for more details on licensing.}_
+_{While I have made minor changes to the code, I believe that copyright for this code belongs to https://www.academind.com/ if you have questions about using this code.}_
 
-Copyright (c) 2015 **_{List of contributors or company name}_**
+Copyright (c) 2019 **_{Chris Underwood & https://www.academind.com/}_**
